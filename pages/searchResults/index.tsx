@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import Link from "next/link";
-import Image from "next/image";
+import Card from "../../components/Card";
 
 const SearchResults = () => {
   const router = useRouter();
@@ -38,21 +37,12 @@ const SearchResults = () => {
   return (
     <div>
       <h1>Resultados da busca: {query}</h1>
-      <ul>
-        {searchResults.map((result) => (
-          <li key={result.id}>
-            <Link href={`/character/${result.id}`}>
-                <Image
-                  src={`${result.thumbnail.path}/portrait_incredible.${result.thumbnail.extension}`}
-                  alt={result.name}
-                  width={500}
-                  height={500}
-                />
-                <h2>{result.name}</h2>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      {searchResults.map((result, index) => (
+        <Card 
+          character={result} 
+          isLast={searchResults.length === index + 1}
+        />
+      ))}
     </div>
   );
 };

@@ -1,58 +1,112 @@
 import Image from "next/image";
 import axios from "axios";
+import styled from 'styled-components';
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:0 32px;
+  font-family: Arial, sans-serif;
+  color: #333;
+`;
+
+const ImageContainer = styled.div`
+  margin: 20px 0;
+  width: 100%;
+  max-width: 500px;
+  height: 500px;
+  position: relative;
+`;
+
+const Title = styled.h2`
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin: 24px 0 12px 0;
+  color: black;
+`;
+
+const Description = styled.p`
+  font-size: 16px;
+  text-align: justify;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+  max-width: 450px;
+`;
+
+const SectionTitle = styled.h3`
+  font-size: 20px;
+  margin: 0;
+  margin-top: 20px;
+  color: #555;
+`;
+
+const SectionList = styled.ul`
+  margin: 0 0 32px 0;
+  list-style: none;
+  padding: 0;
+`;
+
+const ListItem = styled.li`
+  font-size: 14px;
+  line-height: 1.4;
+`;
 
 export default function Character({ character }) {
   return (
-    <div>
-      <Image
-        src={`${character.thumbnail.path}/portrait_incredible.${character.thumbnail.extension}`}
-        alt={character.name}
-        width={500}
-        height={500}
-      />
-      <h2>{character.name}</h2>
-      <p>{character.description}</p>
+    <PageContainer>
+      <ImageContainer>
+        <Image
+          src={`${character.thumbnail.path}/portrait_incredible.${character.thumbnail.extension}`}
+          alt={character.name}
+          layout="fill"
+          objectFit="cover"
+        />
+      </ImageContainer>
+      <Title>{character.name}</Title>
+      <Description>{character.description}</Description>
       {character.comics.items.length > 0 && (
         <>
-          <h3>Comics</h3>
-          <ul>
+          <SectionTitle>Histórias em Quadrinhos</SectionTitle>
+          <SectionList>
             {character.comics.items.map((comic, index) => (
-              <li key={index}>{comic.name}</li>
+              <ListItem key={index}>{comic.name}</ListItem>
             ))}
-          </ul>
+          </SectionList>
         </>
       )}
       {character.stories.items.length > 0 && (
         <>
-          <h3>Stories</h3>
-          <ul>
+          <SectionTitle>Histórias</SectionTitle>
+          <SectionList>
             {character.stories.items.map((story, index) => (
-              <li key={index}>{story.name}</li>
+              <ListItem key={index}>{story.name}</ListItem>
             ))}
-          </ul>
+          </SectionList>
         </>
       )}
       {character.events.items.length > 0 && (
         <>
-          <h3>Events</h3>
-          <ul>
+          <SectionTitle>Eventos</SectionTitle>
+          <SectionList>
             {character.events.items.map((event, index) => (
-              <li key={index}>{event.name}</li>
+              <ListItem key={index}>{event.name}</ListItem>
             ))}
-          </ul>
+          </SectionList>
         </>
       )}
       {character.series.items.length > 0 && (
         <>
-          <h3>Series</h3>
-          <ul>
+          <SectionTitle>Séries</SectionTitle>
+          <SectionList>
             {character.series.items.map((series, index) => (
-              <li key={index}>{series.name}</li>
+              <ListItem key={index}>{series.name}</ListItem>
             ))}
-          </ul>
+          </SectionList>
         </>
       )}
-    </div>
+    </PageContainer>
   );
 }
 

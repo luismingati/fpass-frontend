@@ -1,8 +1,21 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
-import Link from "next/link";
 import Search from "../components/Search";
-import Image from "next/image";
+import Card from "../components/Card";
+import styled from 'styled-components';
+
+const CardList = styled.div`
+  margin: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    margin: 0 16px;
+  }
+`;
 
 export default function App() {
   const [data, setData] = useState<any[]>([]);
@@ -45,39 +58,17 @@ export default function App() {
 
   return (
     <div>
-      <Search />
-      {data.map((character, index) => {
-        if (data.length === index + 1) {
-          return (
-            <div ref={lastCharacterRef} key={character.id}>
-              <Link href={`/character/${character.id}`}>
-                  <Image
-                    src={`${character.thumbnail.path}/portrait_incredible.${character.thumbnail.extension}`}
-                    alt={character.name}
-                    width={500}
-                    height={500}
-                  />
-                  <h2>{character.name}</h2>
-              </Link>
-            </div>
-          );
-        } else {
-          return (
-            <div key={character.id}>
-              <Link href={`/character/${character.id}`}>
-                  <Image
-                    src={`${character.thumbnail.path}/portrait_incredible.${character.thumbnail.extension}`}
-                    alt={character.name}
-                    width={500}
-                    height={500}
-                  />
-                  <h2>{character.name}</h2>
-              </Link>
-            </div>
-          );
-        }
-      })}
-      {loading && <p>Loading...</p>}
+    <Search />
+    <CardList>
+      {data.map((character, index) => (
+        <Card 
+          character={character} 
+          isLast={data.length === index + 1} 
+          refProp={lastCharacterRef}
+        />
+      ))}
+    </CardList>
+    {loading && <p>Loading...</p>}
     </div>
   );
 }
