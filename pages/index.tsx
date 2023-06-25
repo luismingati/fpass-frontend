@@ -65,7 +65,7 @@ export default function App() {
           return (
             <div key={character.id}>
               <Link href={`/character/${character.id}`}>
-                  <img
+                  <Image
                     src={`${character.thumbnail.path}/portrait_incredible.${character.thumbnail.extension}`}
                     alt={character.name}
                     width={500}
