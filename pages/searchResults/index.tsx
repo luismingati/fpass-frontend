@@ -39,6 +39,7 @@ const SearchResults = () => {
       <h1>Resultados da busca: {query}</h1>
       {searchResults.map((result, index) => (
         <Card 
+          key={result.id}
           character={result} 
           isLast={searchResults.length === index + 1}
         />

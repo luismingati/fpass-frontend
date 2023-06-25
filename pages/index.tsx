@@ -62,6 +62,7 @@ export default function App() {
     <CardList>
       {data.map((character, index) => (
         <Card 
+          key={character.id} 
           character={character} 
           isLast={data.length === index + 1} 
           refProp={lastCharacterRef}
