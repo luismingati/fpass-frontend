@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import axios from "axios";
 import Link from "next/link";
 import Search from "../components/Search";
+import Image from "next/image";
 
 export default function App() {
   const [data, setData] = useState<any[]>([]);
@@ -50,7 +51,7 @@ export default function App() {
           return (
             <div ref={lastCharacterRef} key={character.id}>
               <Link href={`/character/${character.id}`}>
-                  <img
+                  <Image
                     src={`${character.thumbnail.path}/portrait_incredible.${character.thumbnail.extension}`}
                     alt={character.name}
                     width={500}

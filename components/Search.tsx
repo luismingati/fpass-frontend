@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 const Search = () => {
   const router = useRouter();
@@ -59,7 +60,7 @@ const Search = () => {
         {suggestions.map((suggestion) => (
           <li key={suggestion.id}>
             <Link href={`/character/${suggestion.id}`}>
-                <img
+                <Image
                   src={`${suggestion.thumbnail.path}/portrait_incredible.${suggestion.thumbnail.extension}`}
                   alt={suggestion.name}
                   width={50}

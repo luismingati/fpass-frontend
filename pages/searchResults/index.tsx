@@ -1,8 +1,8 @@
-// pages/SearchResults.tsx
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
+import Image from "next/image";
 
 const SearchResults = () => {
   const router = useRouter();
@@ -32,7 +32,7 @@ const SearchResults = () => {
   }, [query]);
 
   if (!query) {
-    return null; // Render nothing if no query is provided
+    return null;
   }
 
   return (
@@ -42,7 +42,7 @@ const SearchResults = () => {
         {searchResults.map((result) => (
           <li key={result.id}>
             <Link href={`/character/${result.id}`}>
-                <img
+                <Image
                   src={`${result.thumbnail.path}/portrait_incredible.${result.thumbnail.extension}`}
                   alt={result.name}
                   width={500}
