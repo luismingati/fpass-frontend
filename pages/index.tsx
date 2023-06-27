@@ -3,6 +3,7 @@ import axios from "axios";
 import Search from "../components/Search";
 import Card from "../components/Card";
 import styled from 'styled-components';
+import Loading from "../components/Loading";
 
 const CardList = styled.div`
   margin: 0 32px;
@@ -37,8 +38,8 @@ export default function App() {
   useEffect(() => {
     setLoading(true);
     const fetchData = async () => {
-      const publicKey = "575e3d01e1ac70c961d5870e77e26998";
-      const privateKey = "fad54af7eb64b20bbb019d6c263ffe9b89b4f1c2";
+      const publicKey = process.env.PUBLIC_KEY;
+      const privateKey = process.env.PRIVATE_KEY;
       const ts = new Date().getTime();
       const hash = require("crypto")
         .createHash("md5")
@@ -69,7 +70,7 @@ export default function App() {
         />
       ))}
     </CardList>
-    {loading && <p>Loading...</p>}
+    {loading && <Loading />}
     </div>
   );
 }

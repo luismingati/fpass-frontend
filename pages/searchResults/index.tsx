@@ -2,6 +2,28 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Card from "../../components/Card";
+import styled from 'styled-components'
+import Search from "../../components/Search";
+
+const Title = styled.h1`
+  text-align: center;
+  margin: 0 0 32px 0;
+  font-size: 32px;
+  font-weight: bold;
+`;
+
+const CardList = styled.div`
+  margin: 0 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 20px;
+  justify-items: center;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    margin: 0 16px;
+  }
+`;
 
 const SearchResults = () => {
   const router = useRouter();
@@ -10,8 +32,8 @@ const SearchResults = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const publicKey = "575e3d01e1ac70c961d5870e77e26998";
-      const privateKey = "fad54af7eb64b20bbb019d6c263ffe9b89b4f1c2";
+      const publicKey = process.env.PUBLIC_KEY;
+      const privateKey = process.env.PRIVATE_KEY;
       const ts = new Date().getTime();
       const hash = require("crypto")
         .createHash("md5")
@@ -36,7 +58,9 @@ const SearchResults = () => {
 
   return (
     <div>
-      <h1>Resultados da busca: {query}</h1>
+      <Search />
+      <Title>Resultados da busca: {query}</Title>
+      <CardList>
       {searchResults.map((result, index) => (
         <Card 
           key={result.id}
@@ -44,6 +68,7 @@ const SearchResults = () => {
           isLast={searchResults.length === index + 1}
         />
       ))}
+      </CardList>
     </div>
   );
 };

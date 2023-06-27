@@ -8,7 +8,6 @@ const PageContainer = styled.div`
   align-items: center;
   padding:0 32px;
   font-family: Arial, sans-serif;
-  color: #333;
 `;
 
 const ImageContainer = styled.div`
@@ -39,7 +38,6 @@ const SectionTitle = styled.h3`
   font-size: 20px;
   margin: 0;
   margin-top: 20px;
-  color: #555;
 `;
 
 const SectionList = styled.ul`
@@ -113,8 +111,8 @@ export default function Character({ character }) {
 export async function getServerSideProps(context) {
   const { id } = context.query;
   
-  const publicKey = "575e3d01e1ac70c961d5870e77e26998";
-  const privateKey = "fad54af7eb64b20bbb019d6c263ffe9b89b4f1c2";
+  const publicKey = process.env.PUBLIC_KEY;
+  const privateKey = process.env.PRIVATE_KEY;
   const ts = new Date().getTime();
   const hash = require('crypto').createHash('md5').update(ts + privateKey + publicKey).digest('hex');
   
