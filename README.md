@@ -1,34 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Desafio Fpass Frontend
 
-## Getting Started
+#### Este projeto é um site que utiliza a API da Marvel para exibir informações sobre personagens da Marvel. Ele também possui uma funcionalidade de pesquisa em tempo real que sugere personagens à medida que você digita.
 
-First, run the development server:
+# Como funciona:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## A página inicial do site exibe uma lista de personagens da Marvel. Cada card de personagem contém uma imagem do personagem e o nome do personagem. Ao clicar em um card, você é levado a uma página detalhada para aquele personagem.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## A página do personagem exibe informações mais detalhadas sobre o personagem selecionado. Isso inclui uma descrição do personagem (se disponível), bem como listas de quadrinhos, histórias, eventos e séries nos quais o personagem apareceu.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+# Pesquisa de personagens:
+## Há também uma funcionalidade de pesquisa que permite buscar personagens pelo nome. À medida que você digita na barra de pesquisa, o site sugere personagens que correspondem ao que você digitou. Você pode clicar em uma sugestão para ir diretamente para a página daquele personagem.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Como executar localmente:
+Instale as dependências usando npm install
+Configure as variáveis de ambiente, criando um arquivo .env na raiz do projeto e adicione suas chaves da API.
+PUBLIC_KEY="sua_chave_pública"
+PRIVATE_KEY="sua_chave_privada"
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Inicie o servidor usando npm run dev.
